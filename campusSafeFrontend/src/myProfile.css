@@ -1,0 +1,8 @@
+.profile-container{
+    height: 100vh;
+    justify-content: center;
+    width: 100%;
+    max-width: none;
+    padding: 0%;
+    align-items: center;
+  }

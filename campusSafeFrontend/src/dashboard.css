@@ -1,0 +1,148 @@
+/* .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #c6c6c6;
+  } */
+
+  .dashboard-container{
+    height: 100vh;
+    justify-content: start;
+    width: 100%;
+    max-width: none;
+    padding: 0%;
+
+  }
+
+  body {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+  .dashboard-container{
+    width: 100%;
+  }
+  .dashboard-heading{
+    font-size: 2em;
+  }
+  .top-bar {
+    background-color: #333; /* Set background color */
+    color: #fff; /* Set text color */
+    padding: 10px; /* Adjust padding as needed */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 2px solid #fff; /* Add a horizontal line at the top */
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  /* .top-bar .logo,
+  .top-bar .menu,
+  .top-bar .logout {
+    padding: 5px 10px;
+    cursor: pointer;
+  } */
+  
+  /* Style for the rest of your content */
+  
+  .study-sphere-logo {
+    text-align: center;
+    font-size: 1.5em;
+  }
+  
+  .menu-icon {
+    text-align: center;
+    margin-left: 10px;
+    margin-block-start: auto;
+    margin-block-end: auto;
+    cursor: pointer;
+  }
+  
+  .user-icon {
+    text-align: center;
+    margin-right: 10px;
+    margin-block-start: auto;
+    margin-block-end: auto;
+    display: flex;
+  }
+  
+  .dashboard-content {
+    padding: 20px;
+  }
+  
+  .subjects-list table {
+    width: 100%;
+    border-collapse: collapse;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+  .subjects-list table th,
+  .subjects-list table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .subjects-list table thead th {
+    font-weight: bold;
+  }
+  
+
+  .add-subject{
+    padding-top: 50px;
+  }
+
+  .add-resource{
+    display: inline-block;
+    margin-left: 1rem;
+  }
+
+  .add-resource-btn{
+    padding: 9.6px 14.8435px;
+    border-radius: 100%;
+  }
+
+  .remove-resource-btn{
+    padding: 9.6px 17.2px;
+    border-radius: 100%;
+    margin-left: 1rem;
+  }
+
+  .logout-btn{
+    margin-left: 5px;
+  }
+
+  .menu-panel {
+    position: fixed;
+    top: 0;
+    left: -300px; /* Initially off-screen */
+    width: 250px;
+    height: 100%;
+    background-color: #444;
+    transition: left 0.3s ease-in-out;
+    padding-top: 60px; /* Adjust as needed */
+  }
+  
+  .menu-options {
+    margin-top: 20px;
+    padding: 20px;
+  }
+  
+  .menu-option {
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .menu-option:hover {
+    background-color: #555;
+  }
+  
+  /* Open state for the menu panel */
+  .menu-panel.open {
+    left: 0;
+  }

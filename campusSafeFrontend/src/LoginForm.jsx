@@ -7,7 +7,9 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
-
+    // i love cherruuu
+    const message1 = 'i love my cherruuu!';
+    console.log(message1);
     const user = { username, password };
     // Create a request object to send login data to the API
     try {

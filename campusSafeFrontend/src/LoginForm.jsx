@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 const LoginForm = () => {
-  const [email, setEmail] = useState('');
+  const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const user = { email, password };
+    const user = { userName, password };
     // Create a request object to send login data to the API
     try {
-      const response = await fetch('http://localhost:3000/student/login', {
+      const response = await fetch('http://localhost:8080/user/login', {
         method: 'POST',
         headers: {
           
@@ -46,13 +46,13 @@ const LoginForm = () => {
     <div className="login-form">
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
-        <label htmlFor="email">User Name</label>
+        <label htmlFor="userName">User Name</label>
         <input
           type="text"
-          id="email"
-          name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          id="userName"
+          name="userName"
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
           required
         />
         <label htmlFor="password">Password</label>

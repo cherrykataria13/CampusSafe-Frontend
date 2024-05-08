@@ -152,3 +152,15 @@
   align-items: center;
 }
 
+.classes-container, .students-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  padding: 20px;
+}
+
+.class-card, .student-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  cursor: pointer;
+}

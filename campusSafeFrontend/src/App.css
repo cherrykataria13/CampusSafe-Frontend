@@ -29,114 +29,72 @@
   background-color: #0056b3;
 }
 
-.login-button {
-  background-color: #007bff;
-}
 
 .signup-button {
   background-color: #28a745;
 }
 
-.login-form {
-  width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #3b3b3b;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Styling for the login form elements */
-.login-form h2 {
-  text-align: center;
-  color: #bdbdbd;
-}
-
-.login-form form {
+.logging-form {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  
+  background: url('assets/campus_img.jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.login-form {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  text-align: center;
+}
+
+.login-form h2 {
+  color: #fff;
+  margin-bottom: 20px;
 }
 
 .login-form label {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.login-form input[type="text"],
-.login-form input[type="password"] {
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.login-form button[type="submit"] {
-  background-color: #007bff;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.login-form button[type="submit"]:hover {
-  background-color: #0056b3;
-}
-
-/* Error message styling */
-.error-message {
-  color: #ff0000;
-  font-size: 14px;
-  margin-top: 10px;
-}
-
-.signup-form {
-  width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #3b3b3b;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Style for the form title */
-.signup-form h2 {
-  text-align: center;
-  color: #bdbdbd;
-}
-
-/* Style for labels and input fields */
-.signup-form label {
   display: block;
-  margin: 10px 0;
-  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 10px;
+  text-align: left;
 }
 
-.signup-form input {
+.login-form input {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-
-/* Style for the submit button */
-.signup-form button {
-  width: 100%;
-  padding: 10px;
-  background-color: #007BFF;
-  color: #fff;
   border: none;
   border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
 }
 
-/* Hover effect for the submit button */
-.signup-form button:hover {
-  background-color: #0056b3;
+.login-form button {
+  /* display: inline-block; */
+  align-items: center;
+  border-radius: 5px;
+  background-color: #2687ee;
+  color: #000;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
+
+.login-form button:hover {
+  background-color: #0056b3;
+  color: #ffffff;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 20px;
+}
+
 
 /* Style for the error message (customize this as needed) */
 .error-message {
@@ -145,12 +103,7 @@
   margin-top: 10px;
 }
 
-/* Center the form on the page */
-.signup-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+
 
 .classes-container, .students-container {
   display: grid;

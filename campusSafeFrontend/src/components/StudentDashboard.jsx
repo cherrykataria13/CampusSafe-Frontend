@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import Chart from 'chart.js/auto';
 
 const StudentDashboard = ({userId}) => {
   const [loading, setLoading] = useState(true);
@@ -9,6 +10,8 @@ const StudentDashboard = ({userId}) => {
   const [classInfo, setClassInfo] = useState([]);
   const [selectedSubject, setSelectedSubject] = useState('');
   const [selectedSubjectName, setSelectedSubjectName] = useState('');
+  const [healthStats, setHealthStats] = useState([]);
+  const [duration, setDuration] = useState('all'); // State for selected duration
   const navigate = useNavigate();
   
   const reRenderNow = ()=>{
@@ -57,6 +60,80 @@ const StudentDashboard = ({userId}) => {
   }, [rerender]
   );
 
+  useEffect(() => {
+    const fetchHealthStats = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/dashboard/health-stats/${userId}?duration=${duration}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+          },
+        });
+        const data = await response.json();
+        setHealthStats(data.healthStats);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    if(!loading)
+      {
+        fetchHealthStats();
+      }
+  }, [userId, duration, loading]);
+
+
+// Function to plot the health stats graph
+  const plotHealthStatsGraph = () => {
+    const ctx = document.getElementById('healthStatsChart');
+    const timestamps = healthStats.map(stat => new Date(stat.timestamp).toLocaleDateString());
+    const temps = healthStats.map(stat => stat.temp);
+    const heartRates = healthStats.map(stat => stat.heart_rate);
+
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: timestamps,
+        datasets: [
+          {
+          label: 'Temperature',
+          data: temps,
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
+        },
+        {
+          label: 'Heart Rate',
+          data: heartRates,
+          fill: false,
+          borderColor: 'rgb(255, 99, 132)',
+          tension: 0.1
+        }]
+      },
+    });
+  };
+
+  useEffect(() => {
+    if (healthStats.length > 0) {
+      plotHealthStatsGraph();
+    }
+  }, [healthStats]);
+
+  // Handle duration change
+  const handleDurationChange = (selectedDuration) => {
+    setDuration(selectedDuration);
+  };
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
+
   const handleSubjectChange = (e) => {
     setSelectedSubject(e.target.value);
     const selectedSubject = studentData.classInfo.find(subject => subject.subject_id === selectedSubjectId);
@@ -69,7 +146,7 @@ const StudentDashboard = ({userId}) => {
       navigate(`/attendance/${userId}/${selectedSubject}/${selectedSubjectName}`);
     }
   };
-
+  
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -91,6 +168,25 @@ const StudentDashboard = ({userId}) => {
     <div>
       <h2>{studentData.name}</h2>
       <h3>Last 5 Health Stats</h3>
+      <div className="duration-options">
+        <div className={`duration-option ${duration === 'all' ? 'active' : ''}`} onClick={() => handleDurationChange('all')}>
+          All Time
+        </div>
+        <div className={`duration-option ${duration === '1day' ? 'active' : ''}`} onClick={() => handleDurationChange('1day')}>
+          1 Day
+        </div>
+        <div className={`duration-option ${duration === '1week' ? 'active' : ''}`} onClick={() => handleDurationChange('1week')}>
+          1 Week
+        </div>
+        <div className={`duration-option ${duration === '2weeks' ? 'active' : ''}`} onClick={() => handleDurationChange('2weeks')}>
+          2 Weeks
+        </div>
+        <div className={`duration-option ${duration === '1month' ? 'active' : ''}`} onClick={() => handleDurationChange('1month')}>
+          1 Month
+        </div>
+        
+        <canvas id="healthStatsChart"></canvas>
+      </div>
       <table>
         <thead>
           <tr>

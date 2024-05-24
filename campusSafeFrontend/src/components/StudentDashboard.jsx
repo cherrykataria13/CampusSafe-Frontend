@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
-const StudentDashboard = ({studentId}) => {
-  const [data,setData] = useState(null);
+const StudentDashboard = ({userId}) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [rerender, setRerender] = useState(1);
@@ -15,7 +14,7 @@ const StudentDashboard = ({studentId}) => {
   
   
   useEffect(()=>{
-    fetch(`http://localhost:8080/dashboard/studentsData/${studentId}`, {
+    fetch(`http://localhost:8080/dashboard/studentsData/${userId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -44,19 +43,20 @@ const StudentDashboard = ({studentId}) => {
 
   return (
     <div>
-      <h2>{studentData.full_name}'s Dashboard</h2>
+      <h2>{studentData.name}'s Dashboard</h2>
       <h3>Last 5 Health Stats</h3>
       <ul>
         {studentData.healthStats.map((healthStat, index) => (
           <li key={index}>
-            Height: {healthStat.height}, Weight: {healthStat.weight}, Blood Pressure: {healthStat.blood_pressure}, Heart Rate: {healthStat.heart_rate}
+            Temperature : {healthStat.temp}, Heart Rate: {healthStat.heart_rate}, Location : {healthStat.loc}, time : {healthStat.timestamp}
           </li>
         ))}
       </ul>
       <h3>Subjects Enrolled</h3>
+      <p>Class id : {studentData.classId}</p>
       <ul>
-        {studentData.subjectsEnrolled.map(subject => (
-          <li key={subject.subject_id}>{subject.subject_name}</li>
+        {studentData.classInfo.map(subject => (
+          <li key={subject.subject_id}>subject Name : {subject.subject_name}  Teacher Name : {subject.teacher_name}</li>
         ))}
       </ul>
     </div>

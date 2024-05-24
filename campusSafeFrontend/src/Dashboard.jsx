@@ -8,34 +8,45 @@ import AdminDashboard from './components/AdminDashboard';
 
 const Dashboard = () => {
   const [userType, setUserType ]= useState('student');
+  const [userId, setUserId ] = useState();
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  const checkToken = () => {
+  const checkToken = async () => {
     const token = localStorage.getItem('accessToken');
     if (!token) {
       navigate('/');
       return false;
     }
-    fetch('http://localhost:8080/user/checkToken', {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-    .then(response => {
+    
+    try {
+      const response = await fetch('http://localhost:8080/user/checkToken', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+  
       if (!response.ok) {
         localStorage.removeItem('accessToken');
         navigate('/');
+        return false;
       }
-      return response.json();
-    })
-    .then(data => {
+  
+      const data = await response.json();
       setUserType(data.userType);
-      console.log(data.userId);
-    })
-    .catch(error => {
+      setUserId(data.userId);
+      console.log(userId);
+      setLoading(false);
+  
+      return true;
+    } catch (error) {
       console.error('Error checking token:', error);
-    });
-  }
+      localStorage.removeItem('accessToken');
+      navigate('/');
+      return false;
+    }
+  };
+  
 
   useEffect(() => {
     checkToken();
@@ -45,16 +56,18 @@ const Dashboard = () => {
   const getDashboard = () => {
     switch(userType) {
       case 'student':
-        return <StudentDashboard />;
+        return <StudentDashboard userId={userId}/>;
       case 'teacher':
-        return <TeacherDashboard />;
+        return <TeacherDashboard userId={userId}/>;
       case 'admin':
         return <AdminDashboard />;
       default:
         return <h2>Unauthorized Access</h2>; // or any other fallback component
     }
   };
-  
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="dashboard-container">
       <Topbar />

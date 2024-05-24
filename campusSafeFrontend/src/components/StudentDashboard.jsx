@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const StudentDashboard = ({userId}) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [rerender, setRerender] = useState(1);
   const [studentData, setStudentData] = useState(null);
+  const [selectedSubject, setSelectedSubject] = useState('');
+  const [selectedSubjectName, setSelectedSubjectName] = useState('');
+  const navigate = useNavigate();
   
   const reRenderNow = ()=>{
     setTimeout(() => {
@@ -33,6 +37,19 @@ const StudentDashboard = ({userId}) => {
   }, [rerender]
   );
 
+  const handleSubjectChange = (e) => {
+    setSelectedSubject(e.target.value);
+    const selectedSubject = studentData.classInfo.find(subject => subject.subject_id === selectedSubjectId);
+    setSelectedSubject(selectedSubjectId);
+    setSelectedSubjectName(selectedSubject.subject_name);
+  };
+
+  const handleViewAttendance = () => {
+    if (selectedSubject) {
+      navigate(`/attendance/${userId}/${selectedSubject}/${selectedSubjectName}`);
+    }
+  };
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -43,7 +60,7 @@ const StudentDashboard = ({userId}) => {
 
   return (
     <div>
-      <h2>{studentData.name}'s Dashboard</h2>
+      <h2>{studentData.name}</h2>
       <h3>Last 5 Health Stats</h3>
       <ul>
         {studentData.healthStats.map((healthStat, index) => (
@@ -56,10 +73,19 @@ const StudentDashboard = ({userId}) => {
       <p>Class Name : {studentData.className}</p>
       <ul>
         {studentData.classInfo.map(subject => (
-          <li key={subject.subject_id}>subject Name : {subject.subject_name}  Teacher Name : {subject.teacher_name}</li>
+          <li key={subject.subject_id}>
+            Subject Name : {subject.subject_name} | Teacher Name : {subject.teacher_name}</li>
         ))}
       </ul>
-    </div>
+      <h3>View Attendance</h3>
+      <select value={selectedSubject} onChange={handleSubjectChange}>
+        <option value="">Select a Subject</option>
+        {studentData.classInfo.map(subject => (
+          <option key={subject.subject_id} value={subject.subject_id}>{subject.subject_name}</option>
+        ))}
+      </select>
+      <button onClick={handleViewAttendance}>View Attendance</button>
+    </div>   
   )
 }
 

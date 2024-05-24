@@ -1,0 +1,106 @@
+/* General styles for the landing page */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background: url('assets/campus_img.jpg') no-repeat center center fixed;
+    background-size: cover;
+    overflow-x: hidden;
+  }
+  
+  .landing-page {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5); /* For the transparent background */
+    padding: 20px;
+    color: #fff;
+  }
+  
+  .landing-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    max-width: 100%;
+    height: 100%;
+  }
+  
+  .landing-content h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    
+  }
+  
+  .cta-buttons .cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 1.5em;
+    
+    color: #000000;
+    background-color: #b2c4d5;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+  
+  .cta-buttons .cta-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .section {
+    padding: 60px 20px;
+    text-align: center;
+    color: #333;
+    background-color: #f7f7f7;
+  }
+  
+  .section h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+  
+  .section p {
+    font-size: 1.2em;
+    line-height: 1.6;
+  }
+  
+  .about-section {
+    background-color: #d0daa1; /* Yellow background */
+  }
+  
+  .contact-section {
+    background-color: #b2c4d5; /* Green background */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    margin: -30px 15%;
+  }
+  
+  .contact-details {
+    display: inline-block;
+    padding: 20px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    max-width: 400px;
+    margin: 20px auto;
+    text-align: left;
+  }
+  
+  .scroll-section {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  

@@ -4,11 +4,11 @@ body, html {
     padding: 0;
     height: 100%;
     font-family: Arial, sans-serif;
-    background: url('assets/campus_img.jpg') no-repeat center center fixed;
-    background-size: cover;
+    /* background: url('assets/campus_img.jpg') no-repeat center center fixed; */
+    /* background-size: cover; */
     overflow-x: hidden;
   }
-  
+
   .landing-page {
     display: block;
     flex-direction: column;
@@ -16,10 +16,23 @@ body, html {
     justify-content: center;
     height: 100vh;
     text-align: center;
+    background: url('assets/campus_img.jpg') no-repeat center center fixed;
+    background-size: cover;
     background-color: rgba(0, 0, 0, 0.5); /* For the transparent background */
-    padding: 20px;
+    padding: 0px;
     color: #fff;
   }
+  
+  /* .landing-page {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+  } */
   
   .landing-content {
     display: flex;
@@ -28,6 +41,7 @@ body, html {
     position: relative;
     max-width: 100%;
     height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
   }
   
   .landing-content h1 {
@@ -58,6 +72,7 @@ body, html {
     text-align: center;
     color: #333;
     background-color: #f7f7f7;
+    /* background-color: rgba(0, 0, 0, 0.5); */
   }
   
   .section h2 {
@@ -71,11 +86,11 @@ body, html {
   }
   
   .about-section {
-    background-color: #d0daa1; /* Yellow background */
+    background-color: #d0daa1; 
   }
   
   .contact-section {
-    background-color: #b2c4d5; /* Green background */
+    background-color: #b2c4d5; 
     display: flex;
     justify-content: center;
     flex-direction: column;

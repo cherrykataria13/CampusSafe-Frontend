@@ -53,7 +53,7 @@ const StudentDashboard = ({userId}) => {
         ))}
       </ul>
       <h3>Subjects Enrolled</h3>
-      <p>Class id : {studentData.classId}</p>
+      <p>Class Name : {studentData.className}</p>
       <ul>
         {studentData.classInfo.map(subject => (
           <li key={subject.subject_id}>subject Name : {subject.subject_name}  Teacher Name : {subject.teacher_name}</li>

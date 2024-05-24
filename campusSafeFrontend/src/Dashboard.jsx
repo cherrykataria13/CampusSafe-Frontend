@@ -15,6 +15,7 @@ const Dashboard = () => {
   const checkToken = async () => {
     const token = localStorage.getItem('accessToken');
     if (!token) {
+      window.alert('Unauthorized: Try to login again');
       navigate('/');
       return false;
     }
@@ -28,6 +29,7 @@ const Dashboard = () => {
   
       if (!response.ok) {
         localStorage.removeItem('accessToken');
+        window.alert('Unauthorized: Try to login again')
         navigate('/');
         return false;
       }
@@ -35,7 +37,6 @@ const Dashboard = () => {
       const data = await response.json();
       setUserType(data.userType);
       setUserId(data.userId);
-      console.log(userId);
       setLoading(false);
   
       return true;

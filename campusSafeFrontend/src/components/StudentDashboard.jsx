@@ -65,7 +65,7 @@ const StudentDashboard = ({userId}) => {
   useEffect(() => {
     const fetchHealthStats = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/dashboard/health-stats/${userId}?duration=${duration}`, {
+        const response = await fetch(`http://localhost:8080/dashboard/health-stats/${studentData.studentId}?duration=${duration}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

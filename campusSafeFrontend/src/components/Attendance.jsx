@@ -19,6 +19,7 @@ const Attendance = () => {
       .then((data) => {
         setAttendanceData(data.data);
         setSubjectName(data.subName);
+        console.log(data);
         setLoading(false);
       })
       .catch((error) => {

@@ -49,7 +49,7 @@ const AddLecture = () => {
         .then(response => response.json())
         .then(data => {
             if (data.message) {
-                navigate('/teacherDashboard');
+                navigate('/Dashboard');
             } else {
                 console.error('Error adding lecture:', data.error);
             }

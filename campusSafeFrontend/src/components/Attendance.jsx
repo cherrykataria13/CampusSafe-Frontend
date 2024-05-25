@@ -56,7 +56,7 @@ const Attendance = () => {
             <td>{lecture.lecture_id}</td>
             <td>{new Date(lecture.lecture_date).toLocaleDateString()}</td>
             <td>{lecture.lecture_details}</td>
-            <td>{lecture.loc}</td>
+            <td>{lecture.location}</td>
             <td>{lecture.status}</td>
           </tr>
         ))}

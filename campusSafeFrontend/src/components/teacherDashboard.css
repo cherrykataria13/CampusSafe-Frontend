@@ -92,7 +92,7 @@
   }
   
   .add-lecture {
-    width: 300px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -104,7 +104,7 @@
     color: #000000;
     background-color: #a97da9;
     border-radius: 30px;
-    width: 200%;
+    width: 80%;
     margin-left: 50%;
     margin-right: 50%;
     padding-left: 10%;
@@ -112,9 +112,11 @@
   }
 
   .lecture-info {
+    margin: 20px;
+    width: 100%;
     display: flex;
-    /* flex-wrap: wrap;
-    flex-direction: column; */
+    flex-direction: row;
+    direction: rtl;
     align-content: space-between;
-    justify-content: space-between;
+    justify-content: space-evenly;
   }

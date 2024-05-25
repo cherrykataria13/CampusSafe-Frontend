@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
 import Chart from 'chart.js/auto';
+import './studentDashboard.css'; 
 
 const StudentDashboard = ({userId}) => {
   const [loading, setLoading] = useState(true);
@@ -13,6 +14,9 @@ const StudentDashboard = ({userId}) => {
   const [healthStats, setHealthStats] = useState([]);
   const [duration, setDuration] = useState('all'); // State for selected duration
   const navigate = useNavigate();
+  const chartRef = useRef(null);
+  const tempChartRef = useRef(null);
+  const heartRateChartRef = useRef(null);
   
   const reRenderNow = ()=>{
     setTimeout(() => {
@@ -86,35 +90,96 @@ const StudentDashboard = ({userId}) => {
 
 
 // Function to plot the health stats graph
-  const plotHealthStatsGraph = () => {
-    const ctx = document.getElementById('healthStatsChart');
+
+const plotHealthStatsGraphs = () => {
+  const tempCanvas = document.getElementById('tempChart');
+  const heartRateCanvas = document.getElementById('heartRateChart');
+  if (tempCanvas && heartRateCanvas) {
+    const tempCtx = tempCanvas.getContext('2d');
+    const heartRateCtx = heartRateCanvas.getContext('2d');
     const timestamps = healthStats.map(stat => new Date(stat.timestamp).toLocaleDateString());
     const temps = healthStats.map(stat => stat.temp);
     const heartRates = healthStats.map(stat => stat.heart_rate);
 
-    new Chart(ctx, {
+    if (tempChartRef.current) {
+      tempChartRef.current.destroy(); // Destroy the old chart instance
+    }
+    if (heartRateChartRef.current) {
+      heartRateChartRef.current.destroy(); // Destroy the old chart instance
+    }
+
+    tempChartRef.current = new Chart(tempCtx, {
       type: 'line',
       data: {
         labels: timestamps,
         datasets: [
           {
-          label: 'Temperature',
-          data: temps,
-          fill: false,
-          borderColor: 'rgb(75, 192, 192)',
-          tension: 0.1
-        },
-        {
-          label: 'Heart Rate',
-          data: heartRates,
-          fill: false,
-          borderColor: 'rgb(255, 99, 132)',
-          tension: 0.1
-        }]
+            label: 'Temperature',
+            data: temps,
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+          }
+        ]
       },
     });
-  };
 
+    heartRateChartRef.current = new Chart(heartRateCtx, {
+      type: 'line',
+      data: {
+        labels: timestamps,
+        datasets: [
+          {
+            label: 'Heart Rate',
+            data: heartRates,
+            fill: false,
+            borderColor: 'rgb(255, 99, 132)',
+            tension: 0.1
+          }
+        ]
+      },
+    });
+  }
+};
+  const plotHealthStatsGraph = () => {
+    const canvas = document.getElementById('healthStatsChart');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        const timestamps = healthStats.map(stat => new Date(stat.timestamp).toLocaleDateString());
+        const temps = healthStats.map(stat => stat.temp);
+        const heartRates = healthStats.map(stat => stat.heart_rate);
+
+        if (chartRef.current) {
+          chartRef.current.destroy(); // Destroy the old chart instance
+        }
+
+        chartRef.current = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: timestamps,
+            datasets: [
+              {
+                label: 'Temperature',
+                data: temps,
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+              },
+              {
+                label: 'Heart Rate',
+                data: heartRates,
+                fill: false,
+                borderColor: 'rgb(255, 99, 132)',
+                tension: 0.1
+              }
+            ]
+          },
+        });
+      }
+    }
+  };
+    
   useEffect(() => {
     if (healthStats.length > 0) {
       plotHealthStatsGraph();
@@ -122,8 +187,8 @@ const StudentDashboard = ({userId}) => {
   }, [healthStats]);
 
   // Handle duration change
-  const handleDurationChange = (selectedDuration) => {
-    setDuration(selectedDuration);
+  const handleDurationChange = (event) => {
+    setDuration(event.target.value);
   };
 
   if (loading) {
@@ -168,24 +233,53 @@ const StudentDashboard = ({userId}) => {
     <div>
       <h2>{studentData.name}</h2>
       <h3>Last 5 Health Stats</h3>
+      <canvas id="healthStatsChart"></canvas>
       <div className="duration-options">
-        <div className={`duration-option ${duration === 'all' ? 'active' : ''}`} onClick={() => handleDurationChange('all')}>
+        <label>
+          <input
+            type="radio"
+            value="all"
+            checked={duration === "all"}
+            onChange={handleDurationChange}
+          />
           All Time
-        </div>
-        <div className={`duration-option ${duration === '1day' ? 'active' : ''}`} onClick={() => handleDurationChange('1day')}>
+        </label>
+        <label>
+          <input
+            type="radio"
+            value="1day"
+            checked={duration === "1day"}
+            onChange={handleDurationChange}
+          />
           1 Day
-        </div>
-        <div className={`duration-option ${duration === '1week' ? 'active' : ''}`} onClick={() => handleDurationChange('1week')}>
+        </label>
+        <label>
+          <input
+            type="radio"
+            value="1week"
+            checked={duration === "1week"}
+            onChange={handleDurationChange}
+          />
           1 Week
-        </div>
-        <div className={`duration-option ${duration === '2weeks' ? 'active' : ''}`} onClick={() => handleDurationChange('2weeks')}>
+        </label>
+        <label>
+          <input
+            type="radio"
+            value="2weeks"
+            checked={duration === "2weeks"}
+            onChange={handleDurationChange}
+          />
           2 Weeks
-        </div>
-        <div className={`duration-option ${duration === '1month' ? 'active' : ''}`} onClick={() => handleDurationChange('1month')}>
+        </label>
+        <label>
+          <input
+            type="radio"
+            value="1month"
+            checked={duration === "1month"}
+            onChange={handleDurationChange}
+          />
           1 Month
-        </div>
-        
-        <canvas id="healthStatsChart"></canvas>
+        </label>
       </div>
       <table>
         <thead>
@@ -219,7 +313,7 @@ const StudentDashboard = ({userId}) => {
           </tr>
         </thead>
         <tbody>
-          {classInfo.map(subject => (
+          {classInfo.map((subject) => (
             <tr key={subject.subject_id}>
               <td>{subject.subject_name}</td>
               <td>{subject.teacher_name}</td>
@@ -232,13 +326,15 @@ const StudentDashboard = ({userId}) => {
       <h3>View Attendance</h3>
       <select value={selectedSubject} onChange={handleSubjectChange}>
         <option value="">Select a Subject</option>
-        {studentData.classInfo.map(subject => (
-          <option key={subject.subject_id} value={subject.subject_id}>{subject.subject_name}</option>
+        {studentData.classInfo.map((subject) => (
+          <option key={subject.subject_id} value={subject.subject_id}>
+            {subject.subject_name}
+          </option>
         ))}
       </select>
       <button onClick={handleViewAttendance}>View Attendance</button>
-    </div>   
-  )
+    </div>
+  );
 }
 
 export default StudentDashboard;

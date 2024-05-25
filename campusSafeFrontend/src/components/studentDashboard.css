@@ -91,7 +91,10 @@
     color: rgb(1, 1, 1);
     border-radius: 5px;
     cursor: pointer;
+    
   }
+
+  
   
   .duration-options input {
     display: none;

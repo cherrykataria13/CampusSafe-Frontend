@@ -47,6 +47,7 @@
     text-align: center;
   }
 
+
   .dashboard-heading {
     text-align: center;
     margin: 10px;
@@ -128,6 +129,12 @@
     background-color: #f9f9f9;
   }
   
+
+  table tbody tr:hover {
+    background-color: #cfe2f3; /* Change color on hover */
+    cursor: pointer; /* Change cursor on hover */
+}
+
   /* Spacing between elements */
   .table-spacing {
     margin-top: 30px;

@@ -4,6 +4,7 @@ import LoginForm from './LoginForm';
 import './App.css'
 import Dashboard from './Dashboard';
 import MyProfile from './MyProfile';
+import AddLecture from './components/AddLecture';
 import Attendance from './components/Attendance';
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
         {/* <Route path='/friends' element={<Friends />} /> */}
         <Route path='/profile' element={<MyProfile/>} />
         <Route path="/attendance/:studentId/:subjectId/:subjectName" element={<Attendance />} />
+        <Route path="/addLecture/:classId/:subjectId" element={<AddLecture />} />
       </Routes>
     </Router>
     </div>

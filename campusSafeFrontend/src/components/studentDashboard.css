@@ -94,6 +94,10 @@
     
   }
 
+  .duration-options label:hover {
+    background-color: #854f85;
+
+  }
   
   
   .duration-options input {

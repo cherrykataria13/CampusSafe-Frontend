@@ -1,0 +1,101 @@
+
+
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #504a50; /* Change background color */
+    color: #ffffff; /* Example text color */
+    /* padding: 10px 20px; */
+    padding-top: 1%;
+    padding-bottom: 1%;
+    z-index: 1000;
+  }
+  
+  .menu-icon {
+    cursor: pointer;
+    padding: 0 20px;
+  }
+
+  .menu-icon:hover {
+    color: rgb(164, 109, 216);
+  }
+  
+  .right-icons {
+    display: flex;
+    padding: 0 20px;
+  }
+  
+  .icon {
+    margin-left: 10px; /* Adjust spacing between icons */
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .icon:hover {
+    color: #ff0000; /* Change icon color on hover */
+  }
+  
+  .study-sphere-logo {
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  .user-icon {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-details {
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .logout-btn {
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .menu-panel {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 250px;
+    height: 100%;
+    background-color: #6f5f6fe5;
+    transition: left 0.3s ease-in-out;
+    padding-top: 60px; 
+  }
+  
+  .menu-options {
+    margin-top: 20px;
+    padding: 20px;
+    
+  }
+  
+
+  .menu-option {
+    color: rgb(26, 24, 24);
+    font-style: oblique;
+    font-size: larger;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .menu-option:hover {
+    background-color: #555;
+  }
+
+  .menu-panel.open {
+    left: 0;
+    margin-top: 46.5px;
+  }

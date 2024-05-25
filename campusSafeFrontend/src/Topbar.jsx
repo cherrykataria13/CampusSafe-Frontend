@@ -1,7 +1,8 @@
-import './dashboard.css';
+import './topbar.css';
 import { useState, useEffect } from 'react';
 import Modal from './components/Modal';
 import { useNavigate } from 'react-router-dom';
+import { FiBell, FiUser, FiLogOut } from 'react-icons/fi';
 
 
 const Topbar = ()=>{
@@ -11,7 +12,7 @@ const Topbar = ()=>{
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
-    setMenuOpen(!isMenuOpen);
+    setMenuOpen(prevState => !prevState);
   };
 
   const handleLogout = () =>{
@@ -53,21 +54,42 @@ const Topbar = ()=>{
   //   },[]);
 
   return (
-    <div>
-    <div className="top-bar">
-      <div className="menu-icon" onClick={toggleMenu} >Menu</div>
-      <h1 className="study-sphere-logo">Campus Safe</h1>
-      <div className="user-icon">
-        <Modal modalName = {userDetails.firstName} data = "userDetails" />
-      <button className="logout-btn"onClick={handleLogout}>Logout</button>
-      </div>
-    </div>
-    <div className={`menu-panel ${isMenuOpen ? 'open' : ''}`}>
+
+  <div>
+      <div className="top-bar">
+        <div className="menu-icon" onClick={toggleMenu}>Menu</div>
+        <h1 className="study-sphere-logo">Campus Safe</h1>
+        <div className="right-icons">
+          <FiBell className="icon bell-icon" />
+          <FiUser className="icon user-icon" onClick={openProfilePage} />
+          <FiLogOut className="icon logout-icon" onClick={handleLogout} />
+        </div>
+        
+      <div className={`menu-panel ${isMenuOpen ? 'open' : ''}`}>
         <div className="menu-options">
           <div className="menu-option" onClick={openDashboardPage}>Dashboard</div>
           <div className="menu-option" onClick={openProfilePage}>My Profile</div>
         </div>
       </div>
+    </div>
+
+
+    {/* // <div>
+    // <div className="top-bar">
+    //   <div className="menu-icon" onClick={toggleMenu} >Menu</div>
+    //   <h1 className="study-sphere-logo">Campus Safe</h1>
+    //   <div className="user-icon">
+    //     <Modal modalName = {userDetails.firstName} data = "userDetails" />
+    //   <button className="logout-btn"onClick={handleLogout}>Logout</button>
+    //   </div>
+    // </div>
+    // <div className={`menu-panel ${isMenuOpen ? 'open' : ''}`}>
+    //     <div className="menu-options">
+    //       <div className="menu-option" onClick={openDashboardPage}>Dashboard</div>
+    //       <div className="menu-option" onClick={openProfilePage}>My Profile</div>
+    //     </div>
+    //   </div> */}
+
     </div>
   );
 };

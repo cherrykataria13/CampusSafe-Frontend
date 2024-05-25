@@ -48,10 +48,10 @@ const AddLecture = () => {
         })
         .then(response => response.json())
         .then(data => {
-            if (data.success) {
+            if (data.message) {
                 navigate('/teacherDashboard');
             } else {
-                console.error('Error adding lecture:', data.message);
+                console.error('Error adding lecture:', data.error);
             }
         })
         .catch(error => {

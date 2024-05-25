@@ -8,7 +8,7 @@ const Attendance = () => {
   const [attendanceData, setAttendanceData] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:8080/students/${studentId}/subjects/${subjectId}/attendance`, {
+    fetch(`http://localhost:8080/dashboard/${studentId}/subjects/${subjectId}/attendance`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

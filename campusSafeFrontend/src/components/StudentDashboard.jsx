@@ -15,8 +15,6 @@ const StudentDashboard = ({userId}) => {
   const [duration, setDuration] = useState('all'); // State for selected duration
   const navigate = useNavigate();
   const chartRef = useRef(null);
-  const tempChartRef = useRef(null);
-  const heartRateChartRef = useRef(null);
   
   const reRenderNow = ()=>{
     setTimeout(() => {
@@ -163,7 +161,7 @@ const plotHealthStatsGraphs = () => {
                 label: 'Temperature',
                 data: temps,
                 fill: false,
-                borderColor: 'rgb(75, 192, 192)',
+                borderColor: '#b18890',
                 tension: 0.1
               },
               {
@@ -198,7 +196,7 @@ const plotHealthStatsGraphs = () => {
   if (error) {
     return <p>Error: {error.message}</p>;
   }
-
+ 
   const handleSubjectChange = (e) => {
     setSelectedSubject(e.target.value);
     const selectedSubject = studentData.classInfo.find(subject => subject.subject_id === selectedSubjectId);
@@ -206,10 +204,8 @@ const plotHealthStatsGraphs = () => {
     setSelectedSubjectName(selectedSubject.subject_name);
   };
 
-  const handleViewAttendance = () => {
-    if (selectedSubject) {
-      navigate(`/attendance/${userId}/${selectedSubject}/${selectedSubjectName}`);
-    }
+  const handleViewAttendance = (subjectId) => {
+    navigate(`/attendance/${studentData.studentId}/${subjectId}`);
   };
   
   if (loading) {
@@ -314,7 +310,7 @@ const plotHealthStatsGraphs = () => {
         </thead>
         <tbody>
           {classInfo.map((subject) => (
-            <tr key={subject.subject_id}>
+            <tr key={subject.subject_id} onClick={() => handleViewAttendance(subject.subject_id, subject.subject_name)}>
               <td>{subject.subject_name}</td>
               <td>{subject.teacher_name}</td>
               <td>{subject.attended_lectures}</td>
@@ -323,7 +319,7 @@ const plotHealthStatsGraphs = () => {
           ))}
         </tbody>
       </table>
-      <h3>View Attendance</h3>
+      {/* <h3>View Attendance</h3>
       <select value={selectedSubject} onChange={handleSubjectChange}>
         <option value="">Select a Subject</option>
         {studentData.classInfo.map((subject) => (
@@ -332,7 +328,7 @@ const plotHealthStatsGraphs = () => {
           </option>
         ))}
       </select>
-      <button onClick={handleViewAttendance}>View Attendance</button>
+      <button onClick={handleViewAttendance}>View Attendance</button> */}
     </div>
   );
 }

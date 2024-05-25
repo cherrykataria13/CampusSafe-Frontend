@@ -49,8 +49,12 @@
 
   .dashboard-heading {
     text-align: center;
-    margin-bottom: 20px;
+    margin: 10px;
+    border-style: ridge;
+    border-radius: 30px;
+    border-color: #333;
     font-family: 'Arial', sans-serif;
+    background-color: #b1e6eb;
   }
 
   h2 {
@@ -61,9 +65,13 @@
   
   h3 {
     font-size: 1.5rem;
-    color: #666;
+    color: #000000;
     margin-top: 20px;
     margin-bottom: 20px;
+    margin-left: 30%;
+    margin-right: 30%;
+    background-color: #a97da9;
+    border-radius: 30px;
   }
   
   /* Duration options styling */
@@ -71,20 +79,21 @@
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
   }
   
   .duration-options label {
     display: flex;
     align-items: center;
     padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
+    background-color: #a97da9;
+    color: rgb(1, 1, 1);
     border-radius: 5px;
     cursor: pointer;
   }
   
   .duration-options input {
+    display: none;
     margin-right: 5px;
   }
   
@@ -100,11 +109,12 @@
   table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 30px;
+    margin-bottom: 70px;
+    border-width: 2px;
   }
   
   table thead {
-    background-color: #007bff;
+    background-color: #94b4d5;
     color: white;
   }
   

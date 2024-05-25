@@ -117,3 +117,20 @@
   padding: 10px;
   cursor: pointer;
 }
+
+.attendance-table-container {
+  padding: 20px;
+  margin: 20px;
+  overflow-x: auto;
+}
+
+.attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#attendance-label{
+  margin: 10px;
+}

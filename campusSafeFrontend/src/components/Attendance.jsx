@@ -36,11 +36,18 @@ const Attendance = () => {
     return <p>Error: {error.message}</p>;
   }
 
+  const totalLectures = attendanceData.length;
+  const attendedLectures = attendanceData.filter(lecture => lecture.status === 'present').length;
+  const attendancePercentage = ((attendedLectures / totalLectures) * 100).toFixed(2);
+
   return (
     <div>
       <Topbar />
     <div className="attendance-table-container">
       <h2 id="attendance-label">Attendance for Subject: {subjectName}</h2>
+      <div className="attendance-percentage">
+          <strong>Attendance Percentage: {attendancePercentage}%</strong>
+      </div>
       <table className="attendance-table">
       <thead>
         <tr>

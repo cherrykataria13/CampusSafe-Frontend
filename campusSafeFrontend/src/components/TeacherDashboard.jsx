@@ -59,7 +59,14 @@ const TeacherDashboard = ({ userId }) => {
   if (!teacherInfo) {
     return <p>Loading teacher info...</p>;
   }
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
 
+  // Reverse the order of the lectures array
+  const reversedLectures = [...lectures].reverse();
+  
   return (
 
     <div className="teacher-dashboard">
@@ -99,43 +106,6 @@ const TeacherDashboard = ({ userId }) => {
         </div>
       )}
     </div>
-    // <div>
-    //   <h2>{teacherInfo.full_name}'s Dashboard</h2>
-    //   <div>
-    //     <label htmlFor="classSelect">Select Class:</label>
-    //     <select id="classSelect" value={selectedClass} onChange={e => setSelectedClass(e.target.value)}>
-    //       <option value="">Select a Class</option>
-    //       {classes.map(cls => (
-    //         <option key={cls.class_id} value={cls.class_id}>{cls.class_name}</option>
-    //       ))}
-    //     </select>
-    //   </div>
-    //   {selectedClass && (
-    //     <div>
-    //       <label htmlFor="subjectSelect">Select Subject:</label>
-    //       <select id="subjectSelect" value={selectedSubject} onChange={e => setSelectedSubject(e.target.value)}>
-    //         <option value="">Select a Subject</option>
-    //         {subjects.map(sub => (
-    //           <option key={sub.subject_id} value={sub.subject_id}>{sub.subject_name}</option>
-    //         ))}
-    //       </select>
-    //     </div>
-    //   )}
-    //   {selectedSubject && (
-    //     <div>
-    //       <h3>Lectures</h3>
-    //       <button onClick={handleAddLecture}>Add New Lecture</button>
-    //       <div>
-    //         {lectures.map(lecture => (
-    //           <div key={lecture.lecture_id}>
-    //             <h4>{lecture.lecture_date}</h4>
-    //             <p>{lecture.lecture_details}</p>
-    //           </div>
-    //         ))}
-    //       </div>
-    //     </div>
-    //   )}
-    // </div>
   );
 };
 

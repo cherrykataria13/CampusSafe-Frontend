@@ -3,6 +3,7 @@ import ClassCard from './ClassCard';
 import StudentCard from './StudentCard';
 import SubjectCard from './SubjectCard'; // Assuming you have a SubjectCard component
 import './adminDashboard.css';
+import { useNavigate } from "react-router-dom";
 
 const AdminDashboard = () => {
   const [classes, setClasses] = useState([]);
@@ -15,6 +16,8 @@ const AdminDashboard = () => {
   const [searchClass, setSearchClass] = useState("");
   const [searchSubject, setSearchSubject] = useState("");
   const [searchStudent, setSearchStudent] = useState("");
+  const navigate = useNavigate();
+
 
   const reRenderNow = () => {
     setTimeout(() => {
@@ -106,6 +109,9 @@ const AdminDashboard = () => {
   const filteredStudents = students.filter(student =>
     student.full_name.toLowerCase().includes(searchStudent.toLowerCase())
   );
+  const routeClass = (classId)=>{
+    navigate(`/class/${classId}`);
+  }
 
   if (loading) {
     return <p>Loading...</p>;
@@ -128,7 +134,7 @@ const AdminDashboard = () => {
         <button onClick={() => setSearchClass('')}>Dropdown</button>
         <div className="dropdown-content">
           {filteredClasses.map(classInfo => (
-            <ClassCard key={classInfo.class_id} classInfo={classInfo} onClick={setSelectedClassId} />
+            <ClassCard key={classInfo.class_id} classInfo={classInfo} onClick={()=>routeClass(classInfo.class_id)} />
           ))}
         </div>
       </div>

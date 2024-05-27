@@ -22,7 +22,7 @@ const App = () => {
         <Route path="/attendance/:studentId/:subjectId" element={<Attendance />} />
         <Route path="/addLecture/:classId/:subjectId" element={<AddLecture />} />
         <Route path="/lecture/:classId/:subjectId/:lectureId" element={<LectureDetail />} />
-        <Route path="/class/:classId" component={ClassDetails} />
+        <Route path="/class/:classId" element={<ClassDetails/>} />
       </Routes>
     </Router>
     </div>

@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import SubjectCard from './SubjectCard';
-import StudentCard from './StudentCard';
+import SubjectCard1 from './SubjectCard1';
 import './classDetails.css';
 
 const ClassDetails = () => {
@@ -57,7 +56,7 @@ const ClassDetails = () => {
       <div id="subjects-container">
         <h3>Subjects</h3>
         {subjects.map(subject => (
-          <SubjectCard key={subject.subject_id} subject={subject} />
+          <SubjectCard1 key={subject.subject_id} subject={subject} />
         ))}
       </div>
       <div id="students-container">

@@ -51,7 +51,7 @@ const AddLecture = () => {
         .then(data => {
             if (data.message) {
                 window.alert("lecture added succesfully");
-                navigate('/Dashboard');
+                navigate(`/lecture/${classId}/${subjectId}/${data.lectureId}`);
             } else {
                 console.error('Error adding lecture:', data.error);
             }

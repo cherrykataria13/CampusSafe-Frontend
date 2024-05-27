@@ -9,6 +9,8 @@ const TeacherDashboard = ({ userId }) => {
   const [subjects, setSubjects] = useState([]);
   const [selectedSubject, setSelectedSubject] = useState('');
   const [lectures, setLectures] = useState([]);
+  const [attendanceData, setAttendanceData] = useState([]);
+  const [selectedLecture, setSelectedLecture] = useState(null);
   const navigate = useNavigate();
 
   // Fetch teacher info based on userId
@@ -48,6 +50,10 @@ const TeacherDashboard = ({ userId }) => {
         .catch(error => console.error('Error fetching lectures', error));
     }
   }, [selectedSubject]);
+
+  const handleLectureClick = (lectureId) => {
+    navigate(`/lecture/${selectedClass}/${selectedSubject}/${lectureId}`);
+  };
 
   // Function to handle adding a new lecture
   const handleAddLecture = () => {
@@ -97,9 +103,10 @@ const TeacherDashboard = ({ userId }) => {
           <button onClick={handleAddLecture}>Add New Lecture</button>
           <div className="lecture-info">
             {lectures.map(lecture => (
-              <div key={lecture.lecture_id}>
-                <h4>{lecture.lecture_date}</h4>
-                <p>{lecture.lecture_details}</p>
+              <div key={lecture.lecture_id} onClick={() => handleLectureClick(lecture.lecture_id)}>
+                <h4>Lecture ID: {lecture.lecture_id}</h4>
+                <h4>Date: {formatDate(lecture.lecture_date)}</h4>
+                <p>Details: {lecture.lecture_details}</p>
               </div>
             ))}
           </div>

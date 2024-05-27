@@ -104,7 +104,7 @@ const AdminDashboard = () => {
   );
 
   const filteredStudents = students.filter(student =>
-    student.student_name.toLowerCase().includes(searchStudent.toLowerCase())
+    student.full_name.toLowerCase().includes(searchStudent.toLowerCase())
   );
 
   if (loading) {

@@ -228,7 +228,7 @@ const plotHealthStatsGraphs = () => {
   return (
     <div>
       <h2>{studentData.name}</h2>
-      <h3>Last 5 Health Stats</h3>
+      <h3>Health Stats</h3>
       <canvas id="healthStatsChart"></canvas>
       <div className="duration-options">
         <label>

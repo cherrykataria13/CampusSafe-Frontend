@@ -137,7 +137,7 @@
   }
   
 
-  table tbody tr:hover {
+  .table2 tbody tr:hover {
     background-color: #cfe2f3; /* Change color on hover */
     cursor: pointer; /* Change cursor on hover */
 }

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Topbar from "../Topbar";
+import './attendance.css';
+
 const Attendance = () => {
   const { studentId, subjectId } = useParams();
   const [loading, setLoading] = useState(true);
@@ -38,31 +40,33 @@ const Attendance = () => {
   return (
     <div>
       <Topbar />
-    <div className="attendance-table-container">
-      <h2 id="attendance-label">Attendance for Subject: {subjectName}</h2>
-      <table className="attendance-table">
-      <thead>
-        <tr>
-          <th>Lecture ID</th>
-          <th>Date</th>
-          <th>Details</th>
-          <th>Location</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {attendanceData.map((lecture) => (
-          <tr key={lecture.lecture_id}>
-            <td>{lecture.lecture_id}</td>
-            <td>{new Date(lecture.lecture_date).toLocaleDateString()}</td>
-            <td>{lecture.lecture_details}</td>
-            <td>{lecture.location}</td>
-            <td>{lecture.status}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-    </div>
+      <div className="attendance-table-container">
+        <h2 id="attendance-label">Attendance for Subject: {subjectName}</h2>
+        <div className="attendance-table-wrapper">
+          <table className="attendance-table">
+            <thead>
+              <tr>
+                <th>Lecture ID</th>
+                <th>Date</th>
+                <th>Details</th>
+                <th>Location</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {attendanceData.map((lecture) => (
+                <tr key={lecture.lecture_id}>
+                  <td>{lecture.lecture_id}</td>
+                  <td>{new Date(lecture.lecture_date).toLocaleDateString()}</td>
+                  <td>{lecture.lecture_details}</td>
+                  <td>{lecture.location}</td>
+                  <td>{lecture.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 };

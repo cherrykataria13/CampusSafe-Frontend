@@ -277,7 +277,7 @@ const plotHealthStatsGraphs = () => {
           1 Month
         </label>
       </div>
-      <table>
+      <table class = "table1">
         <thead>
           <tr>
             <th>Temperature</th>
@@ -299,7 +299,7 @@ const plotHealthStatsGraphs = () => {
       </table>
       <h3>Subjects Enrolled</h3>
       <p>Class Name : {studentData.className}</p>
-      <table>
+      <table class = "table2">
         <thead>
           <tr>
             <th>Subject Name</th>

@@ -34,10 +34,12 @@ const LoginForm = () => {
       } else {
         // Handle login error, e.g., show an error message.
         console.log('Login failed');
+        window.alert('Login Failed');
       }
     } catch (error) {
       // Handle network or other errors.
       console.error('Error:', error);
+      window.alert('An error occurred during login.')
       setError('An error occurred during login.');
     }
   };

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import './lectureDetail.css';
+import './attendance.css';
 
 const LectureDetail = () => {
   const { classId, subjectId, lectureId } = useParams();

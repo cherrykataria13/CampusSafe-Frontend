@@ -8,5 +8,22 @@
   }
   
 
+  .table-attendance {
+    display: center;
+    margin: 0 50px;
+    width: 80%;
+  }
 
+  .table-attendance .attendance-present {
+    background-color: #d4edda; /* Green background for present */
+  }
   
+  .table-attendance .attendance-absent {
+    background-color: #f8d7da; /* Red background for absent */
+  }
+  
+  .lecture-attendance {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }

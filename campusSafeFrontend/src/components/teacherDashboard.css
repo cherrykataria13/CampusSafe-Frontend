@@ -12,7 +12,7 @@
   
   .teacher-dashboard h2 {
     color: #333;
-  }
+  } 
   
   .teacher-dashboard label {
     font-weight: bold;
@@ -115,8 +115,7 @@
     margin: 20px;
     width: 100%;
     display: flex;
-    flex-direction: row;
-    direction: rtl;
-    align-content: space-between;
-    justify-content: space-evenly;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    column-gap: 2em;
   }

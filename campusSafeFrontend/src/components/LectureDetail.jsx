@@ -5,9 +5,10 @@ import './attendance.css';
 const LectureDetail = () => {
   const { classId, subjectId, lectureId } = useParams();
   const [lectureData, setLectureData] = useState(null);
+  const backend_url= process.env.backend_url;
 
   useEffect(() => {
-    fetch(`http://localhost:8080/teacher/classes/${classId}/subjects/${subjectId}/lectures/${lectureId}/attendance`)
+    fetch(`${backend_url}:8080/teacher/classes/${classId}/subjects/${subjectId}/lectures/${lectureId}/attendance`)
       .then(response => response.json())
       .then(data => setLectureData(data.data))
       .catch(error => console.error('Error fetching lecture data', error));

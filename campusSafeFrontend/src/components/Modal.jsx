@@ -4,6 +4,7 @@ const Modal = (props) => {
     const [showModal,setShowModal] = useState(false);
 
     const closeModal = () => setShowModal(false);
+    const backend_url= process.env.backend_url;
     
   return (
     <div>

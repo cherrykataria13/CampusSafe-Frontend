@@ -9,11 +9,12 @@ const ClassDetails = () => {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const backend_url= process.env.backend_url;
 
   useEffect(() => {
     const fetchSubjectsAndStudents = async () => {
       try {
-        const subjectsResponse = await fetch(`http://localhost:8080/dashboard/${classId}/getSubjects`, {
+        const subjectsResponse = await fetch(`${backend_url}:8080/dashboard/${classId}/getSubjects`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -22,7 +23,7 @@ const ClassDetails = () => {
         });
         const subjectsData = await subjectsResponse.json();
 
-        const studentsResponse = await fetch(`http://localhost:8080/dashboard/${classId}/getStudents`, {
+        const studentsResponse = await fetch(`${backend_url}:8080/dashboard/${classId}/getStudents`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

@@ -10,6 +10,7 @@ const Topbar = ()=>{
   const [userDetails, setUserDetails] = useState({firstName:"user"});
   const navigate = useNavigate();
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const backend_url= process.env.backend_url;
 
   const toggleMenu = () => {
     setMenuOpen(prevState => !prevState);
@@ -39,7 +40,7 @@ const Topbar = ()=>{
   
   // useEffect(() => {
   //   // Fetch user details from the backend API using the access token
-  //   fetch('http://localhost:3000/student/getDetails', {
+  //   fetch(`${backend_url}:3000/student/getDetails`, {
   //     method: 'GET',
   //     headers: {
   //       'Content-Type': 'application/json',

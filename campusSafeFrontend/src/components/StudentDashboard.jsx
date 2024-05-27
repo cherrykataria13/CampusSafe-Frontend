@@ -15,6 +15,7 @@ const StudentDashboard = ({userId}) => {
   const [duration, setDuration] = useState('all'); // State for selected duration
   const navigate = useNavigate();
   const chartRef = useRef(null);
+  const backend_url= process.env.backend_url;
   
   const reRenderNow = ()=>{
     setTimeout(() => {
@@ -24,7 +25,7 @@ const StudentDashboard = ({userId}) => {
   
   
   useEffect(()=>{
-    fetch(`http://localhost:8080/dashboard/studentsData/${userId}`, {
+    fetch(`${backend_url}:8080/dashboard/studentsData/${userId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -43,7 +44,7 @@ const StudentDashboard = ({userId}) => {
     
       const fetchClassInfo = async () => {
         try {
-          const response = await fetch(`http://localhost:8080/dashboard/${userId}/subjects`, {
+          const response = await fetch(`${backend_url}:8080/dashboard/${userId}/subjects`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -65,7 +66,7 @@ const StudentDashboard = ({userId}) => {
   useEffect(() => {
     const fetchHealthStats = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/dashboard/health-stats/${studentData.studentId}?duration=${duration}`, {
+        const response = await fetch(`${backend_url}:8080/dashboard/health-stats/${studentData.studentId}?duration=${duration}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

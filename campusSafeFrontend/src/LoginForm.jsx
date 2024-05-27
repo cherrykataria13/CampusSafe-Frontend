@@ -6,12 +6,14 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const backend_url= process.env.backend_url;
+
   const handleLogin = async (e) => {
     e.preventDefault();
     const user = { username, password };
     // Create a request object to send login data to the API
     try {
-      const response = await fetch('http://localhost:8080/user/login', {
+      const response = await fetch(`${backend_url}:8080/user/login`, {
         method: 'POST',
         headers: {
           

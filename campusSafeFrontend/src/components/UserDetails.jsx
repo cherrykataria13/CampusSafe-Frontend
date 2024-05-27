@@ -3,9 +3,10 @@ import './userDetails.css';
 
 const UserDetails = () => {
   const [userDetails, setUserDetails] = useState({});
+  const backend_url= process.env.backend_url;
 
   useEffect(() => {
-    fetch('http://localhost:3000/student/getDetails', {
+    fetch(`${backend_url}:3000/student/getDetails`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

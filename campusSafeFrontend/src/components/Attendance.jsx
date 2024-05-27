@@ -9,8 +9,10 @@ const Attendance = () => {
   const [error, setError] = useState(null);
   const [attendanceData, setAttendanceData] = useState(null);
   const [subjectName,setSubjectName] = useState(null);
+  const backend_url= process.env.backend_url;
+  
   useEffect(() => {
-    fetch(`http://localhost:8080/dashboard/${studentId}/subjects/${subjectId}/attendance`, {
+    fetch(`${backend_url}:8080/dashboard/${studentId}/subjects/${subjectId}/attendance`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

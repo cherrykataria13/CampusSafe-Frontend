@@ -11,6 +11,7 @@ const Dashboard = () => {
   const [userId, setUserId ] = useState();
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const backend_url= process.env.backend_url;
 
   const checkToken = async () => {
     const token = localStorage.getItem('accessToken');
@@ -21,7 +22,7 @@ const Dashboard = () => {
     }
     
     try {
-      const response = await fetch('http://localhost:8080/user/checkToken', {
+      const response = await fetch(`${backend_url}:8080/user/checkToken`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

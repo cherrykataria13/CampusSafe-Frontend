@@ -12,9 +12,10 @@ const AddLecture = () => {
     const [selectedwifi, setSelectedwifi] = useState(null);
     const [lectureDetails, setLectureDetails] = useState('');
     const navigate = useNavigate();
+    const backend_url= process.env.backend_url;
 
     useEffect(() => {
-        fetch('http://localhost:8080/teacher/wifi', {
+        fetch(`${backend_url}:8080/teacher/wifi`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
@@ -40,7 +41,7 @@ const AddLecture = () => {
             lecture_details: lectureDetails,
         };
 
-        fetch('http://localhost:8080/teacher/addLecture', {
+        fetch(`${backend_url}:8080/teacher/addLecture`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

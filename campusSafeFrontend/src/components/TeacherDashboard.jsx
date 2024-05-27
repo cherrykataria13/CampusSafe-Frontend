@@ -12,10 +12,11 @@ const TeacherDashboard = ({ userId }) => {
   const [attendanceData, setAttendanceData] = useState([]);
   const [selectedLecture, setSelectedLecture] = useState(null);
   const navigate = useNavigate();
+  const backend_url= process.env.backend_url;
 
   // Fetch teacher info based on userId
   useEffect(() => {
-    fetch(`http://localhost:8080/teacher/teacher/${userId}`)
+    fetch(`${backend_url}:8080/teacher/teacher/${userId}`)
       .then(response => response.json())
       .then(data => setTeacherInfo(data.data))
       .catch(error => console.error('Error fetching teacher info', error));
@@ -24,7 +25,7 @@ const TeacherDashboard = ({ userId }) => {
   // Fetch classes data
   useEffect(() => {
     if(teacherInfo){
-    fetch(`http://localhost:8080/teacher/classes/${teacherInfo.teacher_id}`)
+    fetch(`${backend_url}:8080/teacher/classes/${teacherInfo.teacher_id}`)
       .then(response => response.json())
       .then(data => setClasses(data.classes))
       .catch(error => console.error('Error fetching classes', error));
@@ -34,7 +35,7 @@ const TeacherDashboard = ({ userId }) => {
   // Fetch subjects data when selectedClass changes
   useEffect(() => {
     if (teacherInfo&&selectedClass) {
-      fetch(`http://localhost:8080/teacher/subjects/${teacherInfo.teacher_id}/${selectedClass}`)
+      fetch(`${backend_url}:8080/teacher/subjects/${teacherInfo.teacher_id}/${selectedClass}`)
         .then(response => response.json())
         .then(data => setSubjects(data.subjects))
         .catch(error => console.error('Error fetching subjects', error));
@@ -44,7 +45,7 @@ const TeacherDashboard = ({ userId }) => {
   // Fetch lectures data when selectedSubject changes
   useEffect(() => {
     if (selectedSubject) {
-      fetch(`http://localhost:8080/teacher/lectures/${selectedClass}/${selectedSubject}`)
+      fetch(`${backend_url}:8080/teacher/lectures/${selectedClass}/${selectedSubject}`)
         .then(response => response.json())
         .then(data => setLectures(data.lectures))
         .catch(error => console.error('Error fetching lectures', error));

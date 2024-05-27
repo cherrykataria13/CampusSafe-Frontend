@@ -21,6 +21,7 @@ const AdminDashboard = () => {
   const [showClasses, setShowClasses] = useState(true);
   const [showSubjects, setShowSubjects] = useState(true);
   const [showStudents, setShowStudents] = useState(true);
+  const backend_url= process.env.backend_url;
  
   const reRenderNow = () => {
     setTimeout(() => {
@@ -29,7 +30,7 @@ const AdminDashboard = () => {
   };
 
   useEffect(() => {
-    fetch('http://localhost:8080/dashboard/getClasses', {
+    fetch(`${backend_url}8080/dashboard/getClasses`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -48,7 +49,7 @@ const AdminDashboard = () => {
   }, [rerender]);
 
   useEffect(() => {
-    fetch('http://localhost:8080/dashboard/getSubjects', { // Assuming there's an endpoint to get subjects
+    fetch(`${backend_url}:8080/dashboard/getSubjects`, { // Assuming there's an endpoint to get subjects
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -69,7 +70,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     if (selectedClassId) {
       // Fetch students for the selected class
-      fetch(`http://localhost:8080/dashboard/${selectedClassId}/getStudents`, {
+      fetch(`${backend_url}:8080/dashboard/${selectedClassId}/getStudents`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

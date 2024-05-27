@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import './addLecture.css';
+import Topbar from '../Topbar';
 
 const AddLecture = () => {
     const { classId, subjectId } = useParams();
@@ -63,6 +64,7 @@ const AddLecture = () => {
 
     return (
         <div className="container">
+            <Topbar/>
             <div className="box">
                 <h2>Add New Lecture</h2>
                 <form onSubmit={handleSubmit}>

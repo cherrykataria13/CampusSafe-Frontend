@@ -45,7 +45,7 @@ const Attendance = () => {
   return (
     <div>
       <Topbar />
-    <div className="attendance-table-container">
+    <div className="lecture-attendance">
       <h2 id="attendance-label">Attendance for Subject: {subjectName}</h2>
       <div className="attendance-percentage">
           <strong>Attendance Percentage: {attendancePercentage}%</strong>

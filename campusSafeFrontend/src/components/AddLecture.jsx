@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from "react-router-dom";
+import './addLecture.css';
 
 const AddLecture = () => {
     const { classId, subjectId } = useParams();
@@ -61,42 +62,44 @@ const AddLecture = () => {
     };
 
     return (
-        <div>
-            <h2>Add New Lecture</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Lecture Date:</label>
-                    <input 
-                        type="date" 
-                        value={lectureDate} 
-                        onChange={(e) => setLectureDate(e.target.value)} 
-                        required 
-                    />
-                </div>
-                <div>
-                    <label>Wi-Fi Location:</label>
-                    <select 
-                        value={selectedwifi} 
-                        onChange={(e) => setSelectedwifi(e.target.value)} 
-                        required
-                    >
-                        <option value="">Select a location</option>
-                        {wifiLocations.map((location) => (
-                            <option key={location.wifi_id} value={location.wifi_id}>
-                                {location.location}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-                <div>
-                    <label>Lecture Details:</label>
-                    <textarea 
-                        value={lectureDetails} 
-                        onChange={(e) => setLectureDetails(e.target.value)} 
-                    />
-                </div>
-                <button type="submit">Add Lecture</button>
-            </form>
+        <div className="container">
+            <div className="box">
+                <h2>Add New Lecture</h2>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label>Lecture Date:</label>
+                        <input 
+                            type="date" 
+                            value={lectureDate} 
+                            onChange={(e) => setLectureDate(e.target.value)} 
+                            required 
+                        />
+                    </div>
+                    <div>
+                        <label>Wi-Fi Location:</label>
+                        <select 
+                            value={selectedwifi} 
+                            onChange={(e) => setSelectedwifi(e.target.value)} 
+                            required
+                        >
+                            <option value="">Select a location</option>
+                            {wifiLocations.map((location) => (
+                                <option key={location.wifi_id} value={location.wifi_id}>
+                                    {location.location}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div>
+                        <label>Lecture Details:</label>
+                        <textarea 
+                            value={lectureDetails} 
+                            onChange={(e) => setLectureDetails(e.target.value)} 
+                        />
+                    </div>
+                    <button type="submit" id='lecture-button'>Add Lecture</button>
+                </form>
+            </div>
         </div>
     );
 };

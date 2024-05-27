@@ -74,8 +74,9 @@
   border-radius: 5px;
 }
 
-.login-form button {
-  /* display: inline-block; */
+
+#login-submit-button {
+
   align-items: center;
   border-radius: 5px;
   background-color: #2687ee;
@@ -83,9 +84,11 @@
   font-size: 1em;
   cursor: pointer;
   transition: background-color 0.3s;
+  margin-left: 30%;
+  margin-right: 30%;
 }
 
-.login-form button:hover {
+#login-submit-button:hover {
   background-color: #0056b3;
   color: #ffffff;
 }

@@ -21,9 +21,9 @@ const LandingPage = () => {
       <div className="section contact-section">
         <h2>Contact Us</h2>
         <div className="contact-details">
-          <p><strong>Email:</strong> support@campussafe.com</p>
-          <p><strong>Phone:</strong> +123-456-7890</p>
-          <p><strong>Address:</strong> 123 Campus Road, University City</p>
+          <p><strong>Name:</strong> Rahul Guglani, Cherry Kataria</p>
+          <p><strong>Roll No:</strong> 20103116, 20103045</p>
+          <p><strong>Branch:</strong> Computer Science and Engineering</p>
         </div>
       </div>
     </div>

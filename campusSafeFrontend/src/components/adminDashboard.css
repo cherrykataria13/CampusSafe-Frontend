@@ -1,0 +1,49 @@
+/* AdminDashboard.css */
+
+#dashboard-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f4f4f4;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+#classes-container,
+#students-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 45%;
+    box-sizing: border-box;
+}
+
+#classes-heading,
+#students-heading {
+    margin-top: 0;
+    text-align: center;
+}
+
+.loading,
+.error {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.class-card,
+.student-card {
+    background-color: #fff;
+    border: 1px solid #b1a8a8;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.class-card:hover,
+.student-card:hover {
+    background-color: #f0f0f0;
+}

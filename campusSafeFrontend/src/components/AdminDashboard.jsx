@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ClassCard from './ClassCard';
 import StudentCard from './StudentCard';
+import './adminDashboard.css';
 
 const AdminDashboard = () => {
     const [classes, setClasses] = useState([]);
@@ -70,22 +71,23 @@ const AdminDashboard = () => {
 
   
   return (
-    <div className="dashboard-container">
-    <div className="classes-container">
-      {classes.map(classInfo => (
-        <ClassCard key={classInfo.class_id} classInfo={classInfo} onClick={setSelectedClassId} />
-      ))}
+    <div id="dashboard-container">
+        <div id="classes-container">
+            <h3 id="classes-heading">Classes</h3>
+            {classes.map(classInfo => (
+                <ClassCard key={classInfo.class_id} classInfo={classInfo} onClick={setSelectedClassId} />
+            ))}
+        </div>
+        {selectedClassId && (
+            <div id="students-container">
+                <h3 id="students-heading">Students</h3>
+                {students.map(student => (
+                    <StudentCard key={student.student_id} student={student} />
+                ))}
+            </div>
+        )}
     </div>
-    {selectedClassId && (
-      <div className="students-container">
-        <h3>students</h3>
-        {students.map(student => (
-          <StudentCard key={student.student_id} student={student} />
-        ))}
-      </div>
-    )}
-  </div>
-  )
-}
+);
+};
 
 export default AdminDashboard;

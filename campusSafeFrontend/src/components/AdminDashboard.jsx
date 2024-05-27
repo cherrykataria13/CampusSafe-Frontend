@@ -18,7 +18,10 @@ const AdminDashboard = () => {
   const [searchStudent, setSearchStudent] = useState("");
   const navigate = useNavigate();
 
-
+  const [showClasses, setShowClasses] = useState(true);
+  const [showSubjects, setShowSubjects] = useState(true);
+  const [showStudents, setShowStudents] = useState(true);
+ 
   const reRenderNow = () => {
     setTimeout(() => {
       setRerender(rerender + 1);
@@ -125,48 +128,62 @@ const AdminDashboard = () => {
     <div id="dashboard-container">
       <div className="search-bar">
         <h3>Classes</h3>
+        <div className="search-drop-down">
         <input
           type="text"
           placeholder="Search for classes..."
           value={searchClass}
           onChange={handleClassSearch}
         />
-        <button onClick={() => setSearchClass('')}>Dropdown</button>
-        <div className="dropdown-content">
-          {filteredClasses.map(classInfo => (
-            <ClassCard key={classInfo.class_id} classInfo={classInfo} onClick={()=>routeClass(classInfo.class_id)} />
-          ))}
+        <i className={`fas fa-chevron-${showClasses ? 'up' : 'down'}`} onClick={() => setShowClasses(!showClasses)}></i>
+        
         </div>
+        {showClasses && (
+          <div className="dropdown-content">
+            {filteredClasses.map(classInfo => (
+              <ClassCard key={classInfo.class_id} classInfo={classInfo} onClick={()=>routeClass(classInfo.class_id)} />
+            ))}
+          </div>
+        )}
       </div>
       <div className="search-bar">
         <h3>Subjects</h3>
+        <div className="search-drop-down">
         <input
           type="text"
           placeholder="Search for subjects..."
           value={searchSubject}
           onChange={handleSubjectSearch}
         />
-        <button onClick={() => setSearchSubject('')}>Dropdown</button>
-        <div className="dropdown-content">
-          {filteredSubjects.map(subject => (
-            <SubjectCard key={subject.subject_id} subject={subject} />
-          ))}
+        <i className={`fas fa-chevron-${showSubjects ? 'up' : 'down'}`} onClick={() => setShowSubjects(!showSubjects)}></i>
         </div>
+        {showSubjects && (
+          <div className="dropdown-content">
+            {filteredSubjects.map(subject => (
+              <SubjectCard key={subject.subject_id} subject={subject} />
+            ))}
+          </div>
+        )}
       </div>
       <div className="search-bar">
         <h3>Students</h3>
+        <div className="search-drop-down">
         <input
           type="text"
           placeholder="Search for students..."
           value={searchStudent}
           onChange={handleStudentSearch}
         />
-        <button onClick={() => setSearchStudent('')}>Dropdown</button>
-        <div className="dropdown-content">
-          {filteredStudents.map(student => (
-            <StudentCard key={student.student_id} student={student} />
-          ))}
+        <i className={`fas fa-chevron-${showStudents ? 'up' : 'down'}`} onClick={() => setShowStudents(!showStudents)}></i>
+
         </div>
+        {showStudents && (
+          <div className="dropdown-content">
+            {filteredStudents.map(student => (
+              <StudentCard key={student.student_id} student={student} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

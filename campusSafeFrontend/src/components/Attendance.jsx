@@ -50,7 +50,7 @@ const Attendance = () => {
       <div className="attendance-percentage">
           <strong>Attendance Percentage: {attendancePercentage}%</strong>
       </div>
-      <table className="attendance-table">
+      <table className="table-attendance">
       <thead>
         <tr>
           <th>Lecture ID</th>
@@ -62,7 +62,7 @@ const Attendance = () => {
       </thead>
       <tbody>
         {attendanceData.map((lecture) => (
-          <tr key={lecture.lecture_id}>
+          <tr key={lecture.lecture_id} className={`attendance-${lecture.status}`}>
             <td>{lecture.lecture_id}</td>
             <td>{new Date(lecture.lecture_date).toLocaleDateString()}</td>
             <td>{lecture.lecture_details}</td>

@@ -21,6 +21,7 @@ const Attendance = () => {
       .then((data) => {
         setAttendanceData(data.data);
         setSubjectName(data.subName);
+        console.log(data);
         setLoading(false);
       })
       .catch((error) => {
@@ -37,36 +38,41 @@ const Attendance = () => {
     return <p>Error: {error.message}</p>;
   }
 
+  const totalLectures = attendanceData.length;
+  const attendedLectures = attendanceData.filter(lecture => lecture.status === 'present').length;
+  const attendancePercentage = ((attendedLectures / totalLectures) * 100).toFixed(2);
+
   return (
     <div>
       <Topbar />
-      <div className="attendance-table-container">
-        <h2 id="attendance-label">Attendance for Subject: {subjectName}</h2>
-        <div className="attendance-table-wrapper">
-          <table className="attendance-table">
-            <thead>
-              <tr>
-                <th>Lecture ID</th>
-                <th>Date</th>
-                <th>Details</th>
-                <th>Location</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {attendanceData.map((lecture) => (
-                <tr key={lecture.lecture_id}>
-                  <td>{lecture.lecture_id}</td>
-                  <td>{new Date(lecture.lecture_date).toLocaleDateString()}</td>
-                  <td>{lecture.lecture_details}</td>
-                  <td>{lecture.location}</td>
-                  <td>{lecture.status}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+    <div className="attendance-table-container">
+      <h2 id="attendance-label">Attendance for Subject: {subjectName}</h2>
+      <div className="attendance-percentage">
+          <strong>Attendance Percentage: {attendancePercentage}%</strong>
       </div>
+      <table className="attendance-table">
+      <thead>
+        <tr>
+          <th>Lecture ID</th>
+          <th>Date</th>
+          <th>Details</th>
+          <th>Location</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {attendanceData.map((lecture) => (
+          <tr key={lecture.lecture_id}>
+            <td>{lecture.lecture_id}</td>
+            <td>{new Date(lecture.lecture_date).toLocaleDateString()}</td>
+            <td>{lecture.lecture_details}</td>
+            <td>{lecture.location}</td>
+            <td>{lecture.status}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    </div>
     </div>
   );
 };

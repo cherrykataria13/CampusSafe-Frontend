@@ -49,7 +49,8 @@ const AddLecture = () => {
         .then(response => response.json())
         .then(data => {
             if (data.message) {
-                navigate('/teacherDashboard');
+                window.alert("lecture added succesfully");
+                navigate('/Dashboard');
             } else {
                 console.error('Error adding lecture:', data.error);
             }

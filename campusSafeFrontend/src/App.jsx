@@ -6,8 +6,8 @@ import Dashboard from './Dashboard';
 import MyProfile from './MyProfile';
 import AddLecture from './components/AddLecture';
 import Attendance from './components/Attendance';
-import TeacherDashboard from './components/TeacherDashboard';
 import LectureDetail from './components/LectureDetail';
+import ClassDetails from './components/ClassDetails';
 
 const App = () => {
   return (
@@ -22,6 +22,7 @@ const App = () => {
         <Route path="/attendance/:studentId/:subjectId" element={<Attendance />} />
         <Route path="/addLecture/:classId/:subjectId" element={<AddLecture />} />
         <Route path="/lecture/:classId/:subjectId/:lectureId" element={<LectureDetail />} />
+        <Route path="/class/:classId" component={ClassDetails} />
       </Routes>
     </Router>
     </div>

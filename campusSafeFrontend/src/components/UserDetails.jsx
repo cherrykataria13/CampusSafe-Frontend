@@ -3,7 +3,7 @@ import './userDetails.css';
 
 const UserDetails = () => {
   const [userDetails, setUserDetails] = useState({});
-  const backend_url= process.env.backend_url;
+  const backend_url= import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     fetch(`${backend_url}:3000/student/getDetails`, {

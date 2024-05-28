@@ -12,7 +12,7 @@ const TeacherDashboard = ({ userId }) => {
   const [attendanceData, setAttendanceData] = useState([]);
   const [selectedLecture, setSelectedLecture] = useState(null);
   const navigate = useNavigate();
-  const backend_url= process.env.backend_url;
+  const backend_url= import.meta.env.VITE_BACKEND_URL;
 
   // Fetch teacher info based on userId
   useEffect(() => {

@@ -9,7 +9,7 @@ const Attendance = () => {
   const [error, setError] = useState(null);
   const [attendanceData, setAttendanceData] = useState(null);
   const [subjectName,setSubjectName] = useState(null);
-  const backend_url= process.env.backend_url;
+  const backend_url= import.meta.env.VITE_BACKEND_URL;
   
   useEffect(() => {
     fetch(`${backend_url}:8080/dashboard/${studentId}/subjects/${subjectId}/attendance`, {

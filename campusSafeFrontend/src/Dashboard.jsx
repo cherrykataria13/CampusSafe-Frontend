@@ -11,7 +11,7 @@ const Dashboard = () => {
   const [userId, setUserId ] = useState();
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const backend_url= process.env.backend_url;
+  const backend_url= import.meta.env.VITE_BACKEND_URL;
 
   const checkToken = async () => {
     const token = localStorage.getItem('accessToken');

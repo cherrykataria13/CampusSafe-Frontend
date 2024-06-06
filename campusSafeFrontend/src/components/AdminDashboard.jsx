@@ -30,7 +30,7 @@ const AdminDashboard = () => {
   };
 
   useEffect(() => {
-    fetch(`${backend_url}8080/dashboard/getClasses`, {
+    fetch(`${backend_url}:8080/dashboard/getClasses`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
